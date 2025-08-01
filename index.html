@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      max-width: 600px;
+      margin: 60px auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #555;
+      margin: 20px 0;
+    }
+
+    .note {
+      font-size: 1.2em;
+      color: #444;
+      font-family: 'Dancing Script', cursive;
+      position: relative;
+      z-index: 2;
+    }
+
+    .heart {
+      font-size: 2em;
+      color: #e91e63;
+      margin-top: 20px;
+    }
+
+    #surpriseBtn {
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      margin-top: 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #surpriseBtn:hover {
+      background: #c2185b;
+    }
+
+    .slideshow {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 10;
+      background: black;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slideshow img {
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      opacity: 0;
+      transition: all 2s ease-in-out;
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    .fade {
+      animation: fadeEffect 2s ease-in-out;
+    }
+
+    .zoom-in {
+      animation: zoomIn 2s ease-in-out;
+    }
+
+    .slide-up {
+      animation: slideUp 2s ease-in-out;
+    }
+
+    .rotate {
+      animation: rotateIn 2s ease-in-out;
+    }
+
+    @keyframes fadeEffect {
+      from {opacity: 0;} to {opacity: 1;}
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.8);} to {transform: scale(1);}
+    }
+
+    @keyframes slideUp {
+      from {transform: translateY(50px); opacity: 0;} to {transform: translateY(0); opacity: 1;}
+    }
+
+    @keyframes rotateIn {
+      from {transform: rotate(-15deg); opacity: 0;} to {transform: rotate(0); opacity: 1;}
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      width: 20px;
+      height: 20px;
+      background: red;
+      opacity: 0.7;
+      animation: float 6s infinite ease-in;
+      border-radius: 50% 50% 0 0;
+      transform: rotate(45deg);
+      z-index: 20;
+    }
+
+    .floating-heart::before,
+    .floating-heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .floating-heart::before { top: -10px; left: 0; }
+    .floating-heart::after { left: -10px; top: 0; }
+
+    @keyframes float {
+      0% {transform: translateY(0) scale(1); opacity: 0.8;}
+      100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+    }
+
+    .music-container {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    @media (max-width: 768px) {
+      .slideshow img {
+        max-width: 100vw;
+        max-height: 100vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Birthday, My Love 💖</h1>
+    <div class="quote">
+      "You are the reason I smile a little more, laugh a little louder, and love a lot deeper."
+    </div>
+    <div class="note">
+      Every moment with you is a blessing.<br>
+      I’m so lucky to walk this life with you by my side.<br><br>
+      With all my love,<br>
+      <strong>— Your Forever Person 💌</strong>
+    </div>
+    <div class="heart">❤️</div>
+    <button id="surpriseBtn">have more surprise my sunflower 🌻</button>
+  </div>
+
+  <div class="slideshow" id="slideshow"></div>
+
+  <div class="music-container">
+    <iframe width="300" height="60" src="https://vocaroo.com/embed/1fe7YCNE6qlv?autoplay=1" frameborder="0" allow="autoplay"></iframe>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const imageUrls = [
+        "https://i.postimg.cc/mg2fGZw5/Whats-App-Image-2025-08-01-at-17-31-54.jpg",
+        "https://i.postimg.cc/MKY24fyB/Whats-App-Image-2025-08-01-at-17-31-54-1.jpg",
+        "https://i.postimg.cc/3rmHXcNn/Whats-App-Image-2025-08-01-at-17-34-44.jpg",
+        "https://i.postimg.cc/Hsm1B97H/Whats-App-Image-2025-08-01-at-17-34-44-1.jpg",
+        "https://i.postimg.cc/mrJ0MYGv/Whats-App-Image-2025-08-01-at-17-34-45.jpg",
+        "https://i.postimg.cc/NjJhGhCf/Whats-App-Image-2025-08-01-at-17-34-45-1.jpg",
+        "https://i.postimg.cc/N0535NZ8/Whats-App-Image-2025-08-01-at-17-34-45-2.jpg",
+        "https://i.postimg.cc/prY7g3nv/Whats-App-Image-2025-08-01-at-17-34-46.jpg",
+        "https://i.postimg.cc/rm479DVK/Whats-App-Image-2025-08-01-at-17-34-46-1.jpg",
+        "https://i.postimg.cc/QxhvpNRd/Whats-App-Image-2025-08-01-at-17-36-04.jpg",
+        "https://i.postimg.cc/HWQfc8vN/Whats-App-Image-2025-08-01-at-17-36-04-1.jpg",
+        "https://i.postimg.cc/QM2yVjQs/Whats-App-Image-2025-08-01-at-17-36-05.jpg",
+        "https://i.postimg.cc/wByr61s0/Whats-App-Image-2025-08-01-at-17-36-05-1.jpg"
+      ];
+
+      imageUrls.sort(() => Math.random() - 0.5);
+
+      const slideshow = document.getElementById("slideshow");
+      const surpriseBtn = document.getElementById("surpriseBtn");
+
+      // floating hearts on initial card too
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }, 600);
+
+      surpriseBtn.addEventListener("click", () => {
+        surpriseBtn.style.display = "none";
+        slideshow.style.display = "flex";
+        startSlideshow();
+      });
+
+      function startSlideshow() {
+        imageUrls.forEach((url, index) => {
+          const img = document.createElement("img");
+          img.src = url;
+          if (index === 0) img.classList.add("active");
+          slideshow.appendChild(img);
+        });
+
+        const slides = slideshow.querySelectorAll("img");
+        let current = 0;
+
+        const animations = ["fade", "zoom-in", "slide-up", "rotate"];
+
+        setInterval(() => {
+          slides[current].className = "";
+          current = (current + 1) % slides.length;
+          const anim = animations[Math.floor(Math.random() * animations.length)];
+          slides[current].className = `active ${anim}`;
+        }, 3000);
+      }
+    });
+  </script>
+
+</body>
+</html>
